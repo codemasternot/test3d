@@ -531,9 +531,11 @@ body.blue-theme{--deck-primary:#61a6ff;--deck-secondary:#163c9f;--deck-light:#d5
 <div id="bubbles-container"></div>
 <header class="header">
     <div class="logo">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
-            <path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="4" y="12" width="32" height="11" rx="5.5" stroke="currentColor" stroke-width="2.4"/>
+            <circle cx="11" cy="29" r="3.8" stroke="currentColor" stroke-width="2.2"/>
+            <circle cx="29" cy="29" r="3.8" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M14 17.5H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
         <span>Deck</span>
     </div>
@@ -544,7 +546,7 @@ body.blue-theme{--deck-primary:#61a6ff;--deck-secondary:#163c9f;--deck-light:#d5
         <a href="#" class="nav-item">Culture</a>
         <a href="#" class="nav-item">Reviews</a>
     </nav>
-    <button class="contact-btn">Get in Touch</button>
+    <button class="contact-btn">View Collection</button>
 </header>
 <main class="hero">
   <div class="hero-content">
@@ -744,7 +746,9 @@ document.querySelectorAll('.nav-arrow').forEach((button,i)=>button.addEventListe
   const next=currentFlavor==='classic'?'blue':'classic';if(!switching)switchFlavor(next)
 }));
 document.querySelector('.primary-btn').addEventListener('click',()=>cards.find(c=>c.dataset.flavor!==currentFlavor)?.click());
-document.querySelector('.contact-btn').addEventListener('click',()=>{window.location.href='mailto:hello@example.com?subject=Skateboard%20Enquiry'});
+document.querySelector('.contact-btn').addEventListener('click',()=>{
+  const first=cards[0];if(first){first.focus();if(window.gsap)gsap.fromTo('.product-carousel',{scale:1},{scale:1.06,duration:.28,yoyo:true,repeat:1,ease:'power2.out'});}
+});
 
 function switchFlavor(flavor){
   if(switching)return;
